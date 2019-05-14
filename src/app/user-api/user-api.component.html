@@ -1,0 +1,27 @@
+<table>
+  <tr *ngFor="let user of service.users">
+    <td>{{user.id}}</td>
+    <td>{{user.name}}</td>
+    <td>{{user.age}}</td>
+    <td>{{user.city}}</td>
+    <td>
+      <ul>
+        <li *ngFor=" let hobby of user.hobbies">
+          {{hobby}}
+        </li>
+      </ul>
+    </td>
+    <td>
+      <button (click)="editUserInfo(user)">Edit</button>
+      <button (click)="deleteUser(user.id)">Delete</button>
+    </td>
+  </tr>
+</table>
+<form #userInfo="ngForm" (ngSubmit)="onSubmit(userInfo)">
+  <input type="hidden" [(ngModel)]="service.user.id">
+  <input type="text" [(ngModel)]="service.user.name">
+  <input type="text" [(ngModel)]="service.user.age">
+  <input type="text" [(ngModel)]="service.user.city">
+  <input type="text" [(ngModel)]="service.user.hobbies">
+  <input type="submit" value="Edit">
+</form>
